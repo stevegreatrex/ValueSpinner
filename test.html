@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="dist/spinner.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.js"></script>
+    <script src="dist/spinner.js"></script>
+  </head>
+
+  <body>
+    <div class="demo">
+      <div id="spinner"></div>
+    </div>
+    <script>
+      const getLabel = () => Math.random() > 0.75 ? 'Label!' : null;
+      require(['Spinner'], Spinner => {
+        
+        const values = Array.from(Array(121).keys())
+          .reverse()
+          .map((index) => ({ value: index, label: getLabel() }));
+
+        new Spinner.Spinner({
+          parentElement: document.getElementById('spinner'),
+          values,
+          onSelectedValueChanged: value => console.log(value.value)
+        })
+      });
+    </script>
+  </body>
+</html>
